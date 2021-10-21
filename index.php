@@ -1,3 +1,14 @@
+<?php
+
+session_start();
+
+include("connection.php");
+include("functions.php");
+
+?>
+
+
+
 <!DOCTYPE html>
 <html style="background-color:rgb(0, 0, 0);">
 <head>
