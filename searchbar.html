@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html style="background-color:rgb(0, 0, 0);">
+<head>
+    <meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <title>Ozone</title>
+</head>
+
+<body>
+    <form>
+        <label for="search">Search:</label><br>
+        <input type="text" value="" id="search" name="search" onchange="openPage()"><br>
+
+        <script>
+            function openPage(){
+                var input = document.getElementById("search").value;
+
+                if(input == "call of duty"){
+                    window.open("cod.html");
+                }
+
+                if(input == "team fortress"){
+                    window.open("teamFortress.html");
+                }
+
+                if(input == "smash bros"){
+                    window.open("smashBros.html");
+                }
+            }
+        </script>
+    </form>
+</body>
