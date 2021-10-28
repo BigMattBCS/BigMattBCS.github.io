@@ -1,0 +1,323 @@
+<!DOCTYPE html> 
+<html style="background-color:rgb(0, 0, 0);">
+<head>
+    <meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Polls</title>
+
+    <style>
+
+        a:link {
+
+        color: rgb(0,255,0);
+        }
+
+        a:visited {
+        color: rgb(54,100,255);
+        }
+
+        a:hover {
+        color: rgb(0,255,0);
+        text-decoration: underline;
+        }
+
+* {
+    margin:0px;
+    padding:0px;
+    box-sizing:border-box;
+  }
+
+  .poll {
+    position:fixed;
+    top:50%;
+    left:50%;
+    transform:translate(-50%,-50%);
+    width:100%;
+    max-width:40%;
+    background:#fff;
+    border-radius:10px;
+    box-shadow:0px 0px 20px 5px rgba(35,30,128,0.05);
+  }
+  .poll .question {
+    padding:20px;
+    color:#111;
+    font-size:18px;
+    border-bottom:1px solid #eee;
+  }
+  .poll .answers {
+    padding:20px 20px 10px;
+  }
+  .poll .answers .answer {
+    position:relative;
+    width:100%;
+    height:40px;
+    padding:0px 10px;
+    line-height:40px;
+    color:#111;
+    margin-bottom:10px;
+    border:1px solid #d4d4d4;
+    border-radius:10px;
+    cursor:pointer;
+    overflow:hidden;
+  }
+  .poll .answers .answer.selected {
+    border:2px solid #8f9fe8;
+  }
+  .poll .answers .answer span.percentage-value {
+    position:absolute;
+    top:50%;
+    right:0px;
+    width:40px;
+    transform:translateY(-50%);
+    color:#111;
+    font-size:15px;
+  }
+  .poll .answers .answer span.percentage-bar {
+    position:absolute;
+    top:0px;
+    left:0px;
+    width:0%;
+    height:100%;
+    background:#ccd8f1;
+    z-index:-1;
+    transition:width 300ms ease-in-out;
+  }
+    </style>
+</head>
+
+<body>
+
+    <p style="text-align:center; background-color:rgb(0, 0, 0); padding-top: 1%;">
+		<a href="http://68.132.112.242:8888/login/signup.php">Sign Up</a>&emsp;<a href="http://68.132.112.242:8888/login/login.php">Log In</a>&emsp;<a href="https://discord.gg/eeBseUAe" target="blank">About Us</a>
+        &emsp;<a href="http://68.132.112.242:8888/login/logout.php">Logout</a>
+</p>
+
+<br>
+    <br>
+
+<p style="text-align:center; background-color: rgb(0, 0, 0);">
+    <hr>
+    <a href="index.html">Home</a>&emsp;<a href="trending.html">Trending</a>&emsp;<a href="games.html">Games</a>&emsp;<a href="bugs_and_glitches.html">Bugs/Glitches</a>&emsp;<a href="developers.html">Developers</a>
+    <form style="color: rgb(54,100,255);">
+      <label for="search">Search:</label><br>
+      <input type="text" value="" id="search" name="search" onchange="openPage()"><br>
+
+      <script>
+          function openPage(){
+              var input = document.getElementById("search").value;
+
+              if(input == "call of duty"){
+                  window.open("cod.html","_self");
+              }
+
+              if(input == "team fortress"){
+                  window.open("teamFortress.html","_self");
+              }
+
+              if(input == "smash bros"){
+                  window.open("smashBros.html","_self");
+              }
+          }
+      </script>
+  </form>
+    <hr>
+    <br>
+    <br>
+    <h1 style="text-align: center; background: rgb(0, 0, 0); color:rgb(0,255,0);font-size:3.5em ; padding-top: 12px;"><u>~DAILY POLL~</u></h1>
+
+</p>
+    <div class="poll">
+        <div class="question"></div>
+        <div class="answers"></div>
+      </div>
+
+      <script language="Javascript">
+
+          
+
+let poll = {
+    question:"What's your favorite game out of these four?",
+    answers:[
+      "Zelda: Breath of the Wild", "God of War", "Minecraft", "Witcher 3"
+    ],
+    pollCount:7,
+    answersWeight:[1, 2, 0, 4],
+    selectedAnswer:-1
+  };
+
+  let poll2 = {
+    question:"How many hours do you play a day?",
+    answers:[
+      "1", "2-3", "4-5", "5+"
+    ],
+    pollCount:0,
+    answersWeight:[0, 0, 0, 0],
+    selectedAnswer:-1
+  };
+  
+  
+  let pollDOM = {
+    question:document.querySelector(".poll .question"),
+    answers:document.querySelector(".poll .answers")
+  };
+
+  let pollDOM2 = {
+    question:document.querySelector(".poll2 .question"),
+    answers:document.querySelector(".poll2 .answers")
+  };
+  
+  pollDOM.question.innerText = poll.question;
+  pollDOM.answers.innerHTML = poll.answers.map(function(answer,i){
+    return (
+      `
+        <div class="answer" onclick="markAnswer('${i}')">
+          ${answer}
+          <span class="percentage-bar"></span>
+          <span class="percentage-value"></span>
+        </div>
+      `
+    );
+  }).join("");
+
+  pollDOM2.question.innerText = poll2.question;
+  pollDOM2.answers.innerHTML = poll2.answers.map(function(answer,i){
+    return (
+      `
+        <div class="answer" onclick="markAnswer('${i}')">
+          ${answer}
+          <span class="percentage-bar"></span>
+          <span class="percentage-value"></span>
+        </div>
+      `
+    );
+  }).join("");
+  
+  function markAnswer(i){
+    poll.selectedAnswer = +i;
+    try {
+      document.querySelector(".poll .answers .answer.selected").classList.remove("selected");
+    } catch(msg){}
+    document.querySelectorAll(".poll .answers .answer")[+i].classList.add("selected");
+    showResults();
+  }
+
+  function markAnswer2(i){
+    poll2.selectedAnswer = +i;
+    try {
+      document.querySelector(".poll2 .answers .answer.selected").classList.remove("selected");
+    } catch(msg){}
+    document.querySelectorAll(".poll2 .answers .answer")[+i].classList.add("selected");
+    showResults();
+  }
+  
+  function showResults(){
+    let answers = document.querySelectorAll(".poll .answers .answer");
+    for(let i=0;i<answers.length;i++){
+      let percentage = 0;
+      if(i == poll.selectedAnswer){
+        percentage = Math.round(
+          (poll.answersWeight[i]+1) * 100 / (poll.pollCount+1)
+        );
+      } else {
+        percentage = Math.round(
+          (poll.answersWeight[i]) * 100 / (poll.pollCount+1)
+        );
+      }
+      
+      answers[i].querySelector(".percentage-bar").style.width = percentage + "%";
+      answers[i].querySelector(".percentage-value").innerText = percentage + "%";
+    }
+  }
+
+  function showResults2(){
+    let answers = document.querySelectorAll(".poll2 .answers .answer");
+    for(let i=0;i<answers.length;i++){
+      let percentage = 0;
+      if(i == poll2.selectedAnswer){
+        percentage = Math.round(
+          (poll2.answersWeight[i]+1) * 100 / (poll2.pollCount+1)
+        );
+      } else {
+        percentage = Math.round(
+          (poll2.answersWeight[i]) * 100 / (poll2.pollCount+1)
+        );
+      }
+      
+      answers[i].querySelector(".percentage-bar").style.width = percentage + "%";
+      answers[i].querySelector(".percentage-value").innerText = percentage + "%";
+    }
+  }
+
+
+      </script>
+
+</p>
+<div class="poll2">
+    <div class="question"></div>
+    <div class="answers"></div>
+  </div>
+
+  <script language="Javascript">
+
+let poll2 = {
+question:"How many hours do you play a day?",
+answers:[
+  "1", "2-3", "4-5", "5+"
+],
+pollCount:0,
+answersWeight:[0, 0, 0, 0],
+selectedAnswer:-1
+};
+
+
+let pollDOM2 = {
+question:document.querySelector(".poll2 .question"),
+answers:document.querySelector(".poll2 .answers")
+};
+
+pollDOM2.question.innerText = poll2.question;
+pollDOM2.answers.innerHTML = poll2.answers.map(function(answer,i){
+return (
+  `
+    <div class="answer" onclick="markAnswer('${i}')">
+      ${answer}
+      <span class="percentage-bar"></span>
+      <span class="percentage-value"></span>
+    </div>
+  `
+);
+}).join("");
+
+function markAnswer2(i){
+poll2.selectedAnswer = +i;
+try {
+  document.querySelector(".poll2 .answers .answer.selected").classList.remove("selected");
+} catch(msg){}
+document.querySelectorAll(".poll2 .answers .answer")[+i].classList.add("selected");
+showResults();
+}
+
+function showResults2(){
+let answers = document.querySelectorAll(".poll2 .answers .answer");
+for(let i=0;i<answers.length;i++){
+  let percentage = 0;
+  if(i == poll2.selectedAnswer){
+    percentage = Math.round(
+      (poll2.answersWeight[i]+1) * 100 / (poll2.pollCount+1)
+    );
+  } else {
+    percentage = Math.round(
+      (poll2.answersWeight[i]) * 100 / (poll2.pollCount+1)
+    );
+  }
+  
+  answers[i].querySelector(".percentage-bar").style.width = percentage + "%";
+  answers[i].querySelector(".percentage-value").innerText = percentage + "%";
+}
+}
+  </script>
+</body>
+
+
+
+</html>
