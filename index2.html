@@ -1,0 +1,154 @@
+
+
+<!DOCTYPE html>
+
+
+<html style="background-color:rgb(0, 0, 0);">
+<head>
+    <meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <title>Ozone</title>
+</head>
+
+<body style="color:rgb(0, 255, 0);">
+
+<p style="text-align:center">
+		<a href="https://discord.gg/eeBseUAe" target="blank">About Us</a>
+        &emsp;<a href="http://68.132.112.242:8888/login/logout.php">Logout</a>
+</p>
+<style>
+    a:link {
+
+        color: rgb(0,255,0);
+    }
+
+    a:visited {
+        color: rgb(54,100,255);
+    }
+
+    a:hover {
+        color: rgb(0,255,0);
+        text-decoration: underline;
+    }
+.videoDiv
+{
+    text-align:center;
+    margin: 0 auto;
+    display: block;
+}
+
+.btn {
+            cursor: pointer;
+            border: none;
+            overflow: hidden; 
+            background-color: rgb(255, 0, 0);
+            height: 30px;
+            width: 100px;
+            box-shadow: 0 0px 0px rgb(0, 0, 0);
+    }
+        .light-mode {
+            background-color: rgba(218, 214, 214, 0.85);
+        }
+        .dark-mode {
+            background-color: rgb(0,0,0);
+        }
+
+
+
+</style>
+<div class="videoDiv">
+    <video height="350" autoplay muted loop>
+        <source src="ozone_background.mp4" type="video/mp4"> 
+    </video>
+    </div>
+
+
+<h2 style="text-align:center; color:rgb(0, 255, 0) ">Welcome to the Void!</h2>
+
+    <br> 
+    <h3 style="color: rgb(54,100,255)">
+        Hello, <?php echo $user_data['username']; ?> 
+    </h3>
+
+    <form>
+        <label for="search">Search:</label><br>
+        <input type="text" value="" id="search" name="search" onchange="openPage()"><br>
+
+        <script>
+            function openPage(){
+                var input = document.getElementById("search").value;
+
+                if(input == "call of duty"){
+                    window.open("cod.html","_self");
+                }
+
+                if(input == "team fortress"){
+                    window.open("teamFortress.html","_self");
+                }
+
+                if(input == "smash bros"){
+                    window.open("smashBros.html","_self");
+                }
+            }
+        </script>
+    </form>
+
+    <div>
+        <button class="btn" onclick="darkLightMode()">Dark/Light Mode</button>
+    </div>
+    <script>
+        /*
+        if (user.dark/light.value == 0){
+                mode.classList.toggle("dark-mode");
+            }
+        else{
+            mode.classList.toggle("light-mode");
+
+                */
+        var bc = jQuery(this).html("background-color");
+        function darkLightMode(){
+            var mode = document.body;
+            mode.classList.toggle("light-mode");
+            /*
+            
+            if (user.dark/light.value == 0){
+                mode.classList.toggle("dark-mode");
+                user.dark/light.value = 1;
+            }
+            else{
+                mode.classList.toggle("light-mode");
+                user.dark/light.value = 0;
+            }
+            */
+        }
+    </script>
+   
+
+    <p style="text-align:center; color: rgb(0,255,0)">
+		<i>We seek to connect the developers to the gamers!</i>
+            <hr>
+            <a href="trending.html">Trending</a>&emsp;<a href="games.html">Games</a>&emsp;<a href="bugs_and_glitches.html">Bugs/Glitches</a>&emsp;<a href="reviews.html">Reviews</a>&emsp;<a href="developers.html">Developers</a>&emsp;<a href="polls.html">Polls</a>&emsp;
+            </hr>
+    </p>
+
+        <ul>
+            <li>Call Of Duty</li>
+            <li>Team Fortress 2</li>
+            <li>Super Smash Bros</li>
+        </ul>
+        <hr>
+        <table cellspacing="50">
+            <tr>
+                <th> <a href="posts.html">Post</a></th>
+                <th> <a href="forums.html">Forums</a></th>
+                <th>User</th>
+                
+                <th>Rating</th>
+                <th>Description</th>
+            </tr>
+        </table>
+</body>
+
+
+</html>
