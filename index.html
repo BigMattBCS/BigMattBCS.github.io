@@ -1,92 +1,70 @@
-<?php
-
-session_start();
-
-include("connection.php");
-include("functions.php");
-
-$user_data = check_login($con);
-?>
-
 <!DOCTYPE html>
+
+
 <html style="background-color:rgb(0, 0, 0);">
 <head>
     <meta charset="utf-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 
     <title>Ozone</title>
-    <link rel="stylesheet" href="stylesheet.css">
-    <link href="https://fonts.googleapis.com/css2?family=Titillium+Web:ital,wght@1,700&display=swap" rel="stylesheet">	
 </head>
 
-<body style="color:rgb(0, 255, 0);">
+<body>
+    <style>
 
-<p style="text-align:center; background-color:rgb(0, 0, 0);">
-		<a href="http://68.132.112.242:8888/login/signup.php">Sign Up</a>&emsp;<a href="http://68.132.112.242:8888/login/login.php">Log In</a>&emsp;<a href="https://discord.gg/eeBseUAe" target="blank">About Us</a>
-        &emsp;<a href="http://68.132.112.242:8888/login/logout.php">Logout</a>
-</p>
-<style>
-    a:link {
+html{
+    font-size: 14px;
+    font-family: 'Titillium Web', sans-serif;
+    background-color:rgb(0,0,0);
+    color:#FEFEFE;
+}
 
-        color: rgb(0,255,0);
-    }
+a{
+    color:#FF0042;
+    font-weight: bolder;
+    text-decoration: none;
+}
 
-    a:visited {
-        color: rgb(54,100,255);
-    }
-
-    a:hover {
-        color: rgb(0,255,0);
-        text-decoration: underline;
-    }
-.videoDiv
-{
+h1{
+    font-size:16px;
+    font-weight: bolder;
+}
+   
+    .videoDiv {
     text-align:center;
     margin: 0 auto;
     display: block;
-}
-</style>
-<div class="videoDiv">
-    <video height="350" autoplay muted loop>
-        <source src="ozone_background.mp4" type="video/mp4"> 
-    </video>
+    padding-top: 5%;
+    }
+
+    footer {
+        text-align: center;
+        font-size: large;
+        padding-top: 50pt;
+        clear: both;
+        position:relative;
+        color: antiquewhite;
+
+    }
+    </style>
+
+    <div class="videoDiv">
+        <video autoplay muted loop>
+            <source src="ozone_background.mp4" type="video/mp4"> 
+        </video>
     </div>
 
+    <h1 style="text-align:center; color:rgb(182, 126, 255); font-size: 32pt; ">Welcome to the Void!</h1>
 
-<h2 style="text-align:center; color:rgb(0, 255, 0) ">Welcome to the Void!</h2>
-
-    <br> 
-    <h3 style="color: rgb(54,100,255)">
-        Hello, <?php echo $user_data['username']; ?> 
-    </h3>
-
-    <form>
-            <label for="search">Search:</label><br>
-            <input type="text" id="search" name="search"><br>
-    </form>
-
-    <p style="text-align:center; color: rgb(0,255,0)">
+    <p style="text-align:center; color: rgb(182, 126, 255); font-size: 20pt;">
 		<i>We seek to connect the developers to the gamers!</i>
-            <hr>
-            <a href="trending.html">Trending</a>&emsp;<a href="games.html">Games</a>&emsp;<a href="bugs_and_glitches.html">Bugs/Glitches</a>&emsp;<a href="reviews.html">Reviews</a>&emsp;<a href="developers.html">Developers</a>
-            </hr>
+        <br>
+        <br>
+        <br>
+        <u><a href="http://ozoneforumapp.pythonanywhere.com/">Enter at your own risk</a></u>
     </p>
+    <footer>
+        <span>&copy;  OZONE | All Rights Reserved </span>
+    </footer>
 
-        <ul>
-            <li>Call Of Duty</li>
-            <li>Team Fortress 2</li>
-            <li>Super Smash Bros</li>
-        </ul>
-        <hr>
-        <table cellspacing="50">
-            <tr>
-                <th> <a href="http://ozoneforumapp.pythonanywhere.com/">Forums</a></th>
-                <th>User</th>
-                <th>Rating</th>
-                <th>Description</th>
-            </tr>
-        </table>
-</body>
-
-
-</html>
+</body> 
